@@ -15,16 +15,16 @@ const port=process.env.Port || 3000;
 const host=process.env.Host || "0.0.0.0";
 let MongodbConnectionURI=process.env.ConnectionURI
 
+async function dbConnection()
+{
+    await mongoose.connect(MongodbConnectionURI)
+    console.log("Connected To Database")
+}
+dbConnection().catch((err)=>console.error(err));
+
 app.listen(port,host,()=>{
 console.log("Server Is Listening")
 })
-    async function dbConnection()
-    {
-        await mongoose.connect(MongodbConnectionURI)
-        console.log("Connected To Database")
-    }
-   dbConnection().catch((err)=>console.error(err));
-
 
 app.get('/',(req,res)=>{
     res.status(200).send("Welcome to Speakup Back-End ");
