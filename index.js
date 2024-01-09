@@ -8,7 +8,7 @@ const PortfolioRoutes = require("./routes/portfolio");
 const ArticleRoutes = require("./routes/article");
 
 app.use(express.json());
-app.use(cors());
+app.use(cors({origin:true}));
 
 const port = process.env.Port || 3000;
 const host = process.env.Host || "0.0.0.0";
