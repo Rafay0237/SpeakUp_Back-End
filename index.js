@@ -57,12 +57,14 @@ app.use("/upload", upload.single("file"), async (req, res) => {
     const result = await cloudinary.uploader.upload(tempFilePath, {
       resourse_type: "auto",
     });
-    result ? 1 : console.log("Cloudinary Image uploading Error !");
+    !result && console.log("Cloudinary Image uploading Error !");
     fs.unlinkSync(tempFilePath);
 
+    res.setHeader('Access-Control-Allow-Origin', 'https://illustrious-froyo-6855b5.netlify.app');
+    
     res.status(200).json({ url: result.secure_url });
   } catch (error) {
-    console.log("error:", error);
+    res.setHeader('Access-Control-Allow-Origin', 'https://illustrious-froyo-6855b5.netlify.app');
     res.status(500).json({ error: "Server Error!" });
   }
 });
