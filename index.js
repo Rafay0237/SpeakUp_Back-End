@@ -9,7 +9,7 @@ const ArticleRoutes = require("./routes/article");
 
 app.use(express.json());
 app.use(cors({
-  origin:'https://illustrious-froyo-6855b5.netlify.app/AddData',
+  origin:'https://illustrious-froyo-6855b5.netlify.app',
   methods:['POST','GET']
 }));
 
