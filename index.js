@@ -60,11 +60,11 @@ app.use("/upload", upload.single("file"), async (req, res) => {
     !result && console.log("Cloudinary Image uploading Error !");
     fs.unlinkSync(tempFilePath);
 
-    res.setHeader('Access-Control-Allow-Origin', 'https://illustrious-froyo-6855b5.netlify.app');
+    res.setHeader('Access-Control-Allow-Origin', 'https://illustrious-froyo-6855b5.netlify.app/AddData');
     
     res.status(200).json({ url: result.secure_url });
   } catch (error) {
-    res.setHeader('Access-Control-Allow-Origin', 'https://illustrious-froyo-6855b5.netlify.app');
+    res.setHeader('Access-Control-Allow-Origin', 'https://illustrious-froyo-6855b5.netlify.app/AddData');
     res.status(500).json({ error: "Server Error!" });
   }
 });
