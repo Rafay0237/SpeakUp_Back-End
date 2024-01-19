@@ -8,7 +8,10 @@ const PortfolioRoutes = require("./routes/portfolio");
 const ArticleRoutes = require("./routes/article");
 
 app.use(express.json());
-app.use(cors({origin:true}));
+app.use(cors({
+  origin:'https://illustrious-froyo-6855b5.netlify.app/AddData',
+  methods:['POST','GET']
+}));
 
 const port = process.env.Port || 3000;
 const host = process.env.Host || "0.0.0.0";
