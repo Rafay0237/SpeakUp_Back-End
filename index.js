@@ -8,10 +8,7 @@ const PortfolioRoutes = require("./routes/portfolio");
 const ArticleRoutes = require("./routes/article");
 
 app.use(express.json());
-app.use(cors({
-  origin:'https://illustrious-froyo-6855b5.netlify.app',
-  methods:['POST','GET']
-}));
+app.use(cors());
 
 const port = process.env.Port || 3000;
 const host = process.env.Host || "0.0.0.0";
@@ -58,16 +55,14 @@ app.use("/upload", upload.single("file"), async (req, res) => {
     fs.writeFileSync(tempFilePath, req.file.buffer);
 
     const result = await cloudinary.uploader.upload(tempFilePath, {
-      resourse_type: "auto",
+      resource_type: "image",
+      crossorigin: "anonymous"
     });
     !result && console.log("Cloudinary Image uploading Error !");
     fs.unlinkSync(tempFilePath);
 
-    res.setHeader('Access-Control-Allow-Origin', 'https://illustrious-froyo-6855b5.netlify.app/AddData');
-    
     res.status(200).json({ url: result.secure_url });
   } catch (error) {
-    res.setHeader('Access-Control-Allow-Origin', 'https://illustrious-froyo-6855b5.netlify.app/AddData');
-    res.status(500).json({ error: "Server Error!" });
+    res.status(500).json({ error:error.message});
   }
 });
