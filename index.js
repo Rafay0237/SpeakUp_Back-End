@@ -9,9 +9,8 @@ const ArticleRoutes = require("./routes/article");
 
 const corsOptions = {
   origin: 'https://illustrious-froyo-6855b5.netlify.app',
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  methods: ['GET,POST,DELETE'],
   credentials: true, 
-  optionsSuccessStatus: 204,
 };
 
 app.use(cors(corsOptions));
